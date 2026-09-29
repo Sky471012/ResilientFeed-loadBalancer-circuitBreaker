@@ -16,14 +16,14 @@ Everything runs **locally**. No Docker, no Kubernetes, no Nginx, no cloud.
 
 ## 1. What this project demonstrates
 
-| Concept | Where to see it |
-|---|---|
-| Load balancing | `load-balancer/` spreads `/feed` requests over 3 Feed instances |
-| Cascading failure | Profile is slow/down -> Post gets slow/down -> Feed gets slow/down |
-| Circuit breaker | After 3 failures a breaker opens and calls are rejected **without** hitting the downstream service |
-| Degraded responses | Feed still answers with `200` and a valid (but smaller) payload |
-| Recovery | `OPEN -> HALF_OPEN -> CLOSED` after the downstream heals |
-| State sync | Feed #1 opens a breaker -> Feed #2 and #3 learn about it over Redis |
+| Concept            | Where to see it                                                                                    |
+|--------------------|----------------------------------------------------------------------------------------------------|
+| Load balancing     | `load-balancer/` spreads `/feed` requests over 3 Feed instances                                    |
+| Cascading failure  | Profile is slow/down -> Post gets slow/down -> Feed gets slow/down                                 |
+| Circuit breaker    | After 3 failures a breaker opens and calls are rejected **without** hitting the downstream service |
+| Degraded responses | Feed still answers with `200` and a valid (but smaller) payload                                    |
+| Recovery           | `OPEN -> HALF_OPEN -> CLOSED` after the downstream heals                                           |
+| State sync         | Feed #1 opens a breaker -> Feed #2 and #3 learn about it over Redis                                |
 
 ---
 
@@ -64,12 +64,12 @@ Post  ------> Profile      breaker name: post:profile
 
 **Services**
 
-| Service | Port | Owns data | Depends on |
-|---|---|---|---|
-| Profile Service | 7000 | `profiles` collection | nothing |
-| Post Service | 7001 | `posts` collection | Profile Service |
-| Feed Service x3 | 7004 / 7005 / 7006 | **none** (never touches MongoDB) | Profile + Post |
-| Load Balancer | 8000 | none | Feed instances |
+| Service         | Port               | Owns data                        | Depends on      |
+|-----------------|--------------------|----------------------------------|-----------------|
+| Profile Service | 7000               | `profiles` collection            | nothing         |
+| Post Service    | 7001               | `posts` collection               | Profile Service |
+| Feed Service x3 | 7004 / 7005 / 7006 | **none** (never touches MongoDB) | Profile + Post  |
+| Load Balancer   | 8000               | none                             | Feed instances  |
 
 **Redis** is used *only* to broadcast circuit state changes on the channel
 `circuit-breaker-state`. Normal requests never touch Redis.
@@ -184,14 +184,14 @@ Press `Ctrl+C` to stop everything.
 
 Open 6 terminals (or tabs) in the project folder:
 
-| Terminal | Command |
-|---|---|
-| 1 | `npm run profile` |
-| 2 | `npm run post` |
-| 3 | `npm run feed1` |
-| 4 | `npm run feed2` |
-| 5 | `npm run feed3` |
-| 6 | `npm run lb` |
+| Terminal | Command           |
+|----------|-------------------|
+| 1        | `npm run profile` |
+| 2        | `npm run post`    |
+| 3        | `npm run feed1`   |
+| 4        | `npm run feed2`   |
+| 5        | `npm run feed3`   |
+| 6        | `npm run lb`      |
 
 Sample data is seeded automatically the first time each service starts
 (3 profiles, 12 posts).

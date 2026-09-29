@@ -42,6 +42,7 @@ class CircuitBreaker {
     console.log(`[CB:${this.name}] ${this.state}`);
   }
 
+  // can downstream called
   canExecute() {
     if (!this.enabled) return true;
 
