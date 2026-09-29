@@ -1,0 +1,10 @@
+{
+  "name": "feed-service",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Calls Profile and Post services through feed:profile and feed:post circuit breakers. Never touches MongoDB.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

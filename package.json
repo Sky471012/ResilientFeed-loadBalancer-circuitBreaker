@@ -1,0 +1,24 @@
+{
+  "name": "resilient-feed",
+  "version": "1.0.0",
+  "description": "Beginner-friendly Node.js project demonstrating load balancing, circuit breakers and Redis circuit-state sync.",
+  "private": true,
+  "scripts": {
+    "profile": "node services/profile/server.js",
+    "post": "node services/post/server.js",
+    "feed1": "node scripts/run-feed.js 7004",
+    "feed2": "node scripts/run-feed.js 7005",
+    "feed3": "node scripts/run-feed.js 7006",
+    "lb": "node load-balancer/server.js",
+    "start:all": "node scripts/start-all.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongoose": "^8.9.5",
+    "redis": "^4.7.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

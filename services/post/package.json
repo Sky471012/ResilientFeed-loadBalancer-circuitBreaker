@@ -1,0 +1,10 @@
+{
+  "name": "post-service",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Owns post data. Depends on the Profile Service (post:profile circuit breaker).",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

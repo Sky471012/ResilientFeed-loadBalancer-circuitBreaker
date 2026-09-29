@@ -1,0 +1,10 @@
+{
+  "name": "load-balancer",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Simple round-robin load balancer in front of the Feed service instances.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
